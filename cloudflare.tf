@@ -16,6 +16,16 @@ resource "cloudflare_record" "AAAA" {
   proxied = lookup(var.aaaa_records[count.index], "proxied")
 }
 
+resource "cloudflare_record" "NS" {
+  count = length(keys(transpose(var.ns_records)))
+
+  zone_id = var.zone_id
+
+  type = "NS"
+  name = element(flatten(values(transpose(var.ns_records))), count.index)
+  value = element(keys(transpose(var.ns_records)), count.index)
+}
+
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
   zone_id = var.zone_id
 

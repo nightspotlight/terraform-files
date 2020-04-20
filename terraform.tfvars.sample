@@ -9,3 +9,11 @@ aaaa_records = [
   { name = "www", address = "", proxied = true },
   { name = "git", address = "", proxied = false }
 ]
+
+ns_records = {
+  "test" = [
+    "ns1.example.org",
+    "ns2.example.org",
+    "ns3.example.net"
+  ]
+}
