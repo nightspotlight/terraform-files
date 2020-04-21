@@ -6,14 +6,14 @@ resource "cloudflare_zone" "nightspotlight_me" {
 }
 
 resource "cloudflare_record" "AAAA" {
-  count = length(var.ipv6_addresses)
+  count = length(var.aaaa_records)
 
   zone_id = var.zone_id
 
   type = "AAAA"
-  name = lookup(var.ipv6_addresses[count.index], "name")
-  value = lookup(var.ipv6_addresses[count.index], "address")
-  proxied = lookup(var.ipv6_addresses[count.index], "proxied")
+  name = lookup(var.aaaa_records[count.index], "name")
+  value = lookup(var.aaaa_records[count.index], "address")
+  proxied = lookup(var.aaaa_records[count.index], "proxied")
 }
 
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {

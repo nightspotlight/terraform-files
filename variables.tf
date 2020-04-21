@@ -8,7 +8,7 @@ variable "zone_name" { default = "nightspotlight.me" }
 
 variable "zone_id" { default = "682b27e4ca7465c29bc00a9d1b0876c3" }
 
-variable "ipv6_addresses" {
+variable "aaaa_records" {
   type = list(object({name = string, address = string, proxied = bool}))
   default = []
 }

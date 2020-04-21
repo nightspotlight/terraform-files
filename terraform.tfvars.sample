@@ -4,8 +4,8 @@ cloudflare_api_key = ""
 
 hcloud_token = ""
 
-ipv6_addresses = [
-  { name = "@", address = "", proxied = false },
-  { name = "www", address = "", proxied = false },
-  { name = "git", address = "", proxied = true }
+aaaa_records = [
+  { name = "@", address = "", proxied = true },
+  { name = "www", address = "", proxied = true },
+  { name = "git", address = "", proxied = false }
 ]
