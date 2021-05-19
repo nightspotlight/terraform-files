@@ -16,6 +16,17 @@ resource "cloudflare_record" "AAAA" {
   proxied = lookup(var.aaaa_records[count.index], "proxied")
 }
 
+resource "cloudflare_record" "CNAME" {
+  count = length(var.cname_records)
+
+  zone_id = var.cloudflare_zone_id
+
+  type    = "CNAME"
+  name    = lookup(var.cname_records[count.index], "name")
+  value   = lookup(var.cname_records[count.index], "address")
+  proxied = lookup(var.cname_records[count.index], "proxied")
+}
+
 resource "cloudflare_record" "NS" {
   count = length(keys(transpose(var.ns_records)))
 

@@ -10,6 +10,10 @@ aaaa_records = [
   { name = "git", address = "", proxied = false }
 ]
 
+cname_records = [
+  { name = "testcname", address = "cnametarget.tld", proxied = false }
+]
+
 ns_records = {
   "test" = [
     "ns1.example.org",

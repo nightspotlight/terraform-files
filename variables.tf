@@ -21,6 +21,11 @@ variable "aaaa_records" {
   default = []
 }
 
+variable "cname_records" {
+  type    = list(object({ name = string, address = string, proxied = bool }))
+  default = []
+}
+
 variable "ns_records" {
   type    = map(list(string))
   default = {}
