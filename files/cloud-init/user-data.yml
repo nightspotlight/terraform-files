@@ -15,6 +15,5 @@ packages:
   - htop
   - iotop
   - iftop
-  - ufw
   - rsync
   - needrestart

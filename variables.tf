@@ -16,6 +16,10 @@ variable "hcloud_token" {
   sensitive = true
 }
 
+variable "hetznerdns_token" {
+  sensitive = true
+}
+
 variable "aaaa_records" {
   type    = list(object({ name = string, address = string, proxied = bool }))
   default = []
