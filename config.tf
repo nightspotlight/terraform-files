@@ -1,13 +1,13 @@
 terraform {
-  required_version = "~> 0.13"
+  required_version = ">= 0.13"
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 2.1"
+      version = "~> 2.22"
     }
     hcloud = {
       source  = "hetznercloud/hcloud"
-      version = "~> 1.12"
+      version = "~> 1.27"
     }
   }
 }
