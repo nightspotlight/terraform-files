@@ -1,6 +1,10 @@
 resource "hcloud_ssh_key" "roman" {
   name       = "Roman@Roman-PC"
   public_key = file("${path.root}/files/ssh/roman.key.pub")
+
+  labels = {
+    terraform = "true"
+  }
 }
 
 resource "hcloud_server" "nextcloud" {
@@ -12,6 +16,12 @@ resource "hcloud_server" "nextcloud" {
   ssh_keys     = [hcloud_ssh_key.roman.id]
   user_data    = file("${path.root}/files/cloud-init/user-data.yml")
   firewall_ids = [hcloud_firewall.nextcloud.id]
+
+  labels = {
+    app       = "nextcloud",
+    docker    = "true",
+    terraform = "true"
+  }
 
   lifecycle {
     ignore_changes = [
@@ -27,6 +37,11 @@ resource "hcloud_volume" "nextcloud-data" {
   server_id = hcloud_server.nextcloud.id
   automount = true
   format    = "xfs"
+
+  labels = {
+    app        = "nextcloud",
+    terraform  = "true"
+  }
 }
 
 resource "hcloud_firewall" "nextcloud" {
@@ -65,5 +80,10 @@ resource "hcloud_firewall" "nextcloud" {
       "0.0.0.0/0",
       "::/0"
     ]
+  }
+
+  labels = {
+    app       = "nextcloud",
+    terraform = "true"
   }
 }
