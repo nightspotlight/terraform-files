@@ -39,8 +39,8 @@ resource "hcloud_volume" "nextcloud-data" {
   format    = "xfs"
 
   labels = {
-    app        = "nextcloud",
-    terraform  = "true"
+    app       = "nextcloud",
+    terraform = "true"
   }
 }
 

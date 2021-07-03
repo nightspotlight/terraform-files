@@ -2,9 +2,11 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/cloudflare/cloudflare" {
-  version = "2.23.0"
+  version     = "2.23.0"
+  constraints = "~> 2.23"
   hashes = [
     "h1:49DLOpHU7mbjmWpfj8kubdMo5lBn5xBksI76VYJDs1M=",
+    "h1:JoFvTsDmVmv7a0g0LAQmozYxskem/aMjeTCIonqdm/Q=",
     "zh:11008f1455ec8f7d3637d60e3b90d0e367b816289d6d99e61370e7fd2f906ba3",
     "zh:1d84ee317977ea925d5249cd33ce78258fd0c0e34892e0658ce2b9ea6172c006",
     "zh:207e2b21b8a9b48e1dbaf088da18a9ce197f54759fb5a6d73869e2089981b351",
@@ -22,8 +24,10 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
 }
 
 provider "registry.terraform.io/hetznercloud/hcloud" {
-  version = "1.27.2"
+  version     = "1.27.2"
+  constraints = "~> 1.27"
   hashes = [
+    "h1:8aye/uFw+BUY5fFuWivKMZvH63Xk/d+K5b31PYkgcTA=",
     "h1:dqJ7rsG8/sNQbxaGlk3VQTJ3rsSeGZdiK4BUDRcsbBI=",
     "zh:0294686d56f01d562a9ab654e7a6b2c29fdbad37e4fcdb8f8a220bfccf193de7",
     "zh:0a159d762616e94fac9dbe7d90c1b6892aa3ca494f48100e7b5c7dbd891cd5ee",
