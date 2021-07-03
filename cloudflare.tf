@@ -5,6 +5,17 @@ resource "cloudflare_zone" "nightspotlight_me" {
   paused = false
 }
 
+resource "cloudflare_record" "A" {
+  count = length(var.a_records)
+
+  zone_id = var.cloudflare_zone_id
+
+  type    = "A"
+  name    = lookup(var.a_records[count.index], "name")
+  value   = lookup(var.a_records[count.index], "address")
+  proxied = lookup(var.a_records[count.index], "proxied")
+}
+
 resource "cloudflare_record" "AAAA" {
   count = length(var.aaaa_records)
 

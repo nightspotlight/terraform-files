@@ -4,6 +4,10 @@ cloudflare_api_key = ""
 
 hcloud_token = ""
 
+a_records = [
+  { name = "@", address = "123.123.123.123", proxied = false }
+]
+
 aaaa_records = [
   { name = "@", address = "", proxied = true },
   { name = "www", address = "", proxied = true },
