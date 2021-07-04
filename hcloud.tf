@@ -7,7 +7,7 @@ resource "hcloud_ssh_key" "roman" {
   public_key = file("${path.root}/files/ssh/roman.key.pub")
 
   labels = {
-    terraform = "true"
+    managed_by_terraform = "true"
   }
 }
 
@@ -22,11 +22,11 @@ resource "hcloud_server" "nextcloud" {
   firewall_ids = [hcloud_firewall.nextcloud.id]
 
   labels = {
-    app           = "nextcloud",
-    docker        = "true",
-    terraform     = "true",
-    dns_subdomain = "share",
-    cf_proxied    = "false"
+    app                  = "nextcloud",
+    docker               = "true",
+    managed_by_terraform = "true",
+    dns_subdomain        = "share",
+    cf_proxied           = "false"
   }
 
   lifecycle {
@@ -45,8 +45,8 @@ resource "hcloud_volume" "nextcloud-data" {
   format    = "xfs"
 
   labels = {
-    app       = "nextcloud",
-    terraform = "true"
+    app                  = "nextcloud",
+    managed_by_terraform = "true"
   }
 }
 
@@ -81,7 +81,7 @@ resource "hcloud_firewall" "nextcloud" {
   }
 
   labels = {
-    app       = "nextcloud",
-    terraform = "true"
+    app                  = "nextcloud",
+    managed_by_terraform = "true"
   }
 }
