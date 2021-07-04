@@ -1,7 +1,5 @@
 # Cloudflare
-variable "cloudflare_email" {
-  sensitive = true
-}
+variable "cloudflare_email" {}
 
 variable "cloudflare_account_id" {
   sensitive = true
@@ -30,20 +28,20 @@ variable "hcloud_token" {
 # }
 
 
-# DNS resources
+# Additional DNS resources
 variable "a_records" {
-  type    = list(object({ name = string, address = string, proxied = bool }))
-  default = []
+  type    = map(object({ address = string, proxied = bool }))
+  default = {}
 }
 
 variable "aaaa_records" {
-  type    = list(object({ name = string, address = string, proxied = bool }))
-  default = []
+  type    = map(object({ address = string, proxied = bool }))
+  default = {}
 }
 
 variable "cname_records" {
-  type    = list(object({ name = string, address = string, proxied = bool }))
-  default = []
+  type    = map(object({ address = string, proxied = bool }))
+  default = {}
 }
 
 variable "ns_records" {

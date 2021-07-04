@@ -6,46 +6,46 @@ resource "cloudflare_zone" "nightspotlight_me" {
 }
 
 resource "cloudflare_record" "A" {
-  count = length(var.a_records)
+  for_each = var.a_records
 
   zone_id = var.cloudflare_zone_id
 
   type    = "A"
-  name    = lookup(var.a_records[count.index], "name")
-  value   = lookup(var.a_records[count.index], "address")
-  proxied = lookup(var.a_records[count.index], "proxied")
+  name    = each.key
+  value   = each.value["address"]
+  proxied = each.value["proxied"]
 }
 
 resource "cloudflare_record" "AAAA" {
-  count = length(var.aaaa_records)
+  for_each = var.aaaa_records
 
   zone_id = var.cloudflare_zone_id
 
   type    = "AAAA"
-  name    = lookup(var.aaaa_records[count.index], "name")
-  value   = lookup(var.aaaa_records[count.index], "address")
-  proxied = lookup(var.aaaa_records[count.index], "proxied")
+  name    = each.key
+  value   = each.value["address"]
+  proxied = each.value["proxied"]
 }
 
 resource "cloudflare_record" "CNAME" {
-  count = length(var.cname_records)
+  for_each = var.cname_records
 
   zone_id = var.cloudflare_zone_id
 
   type    = "CNAME"
-  name    = lookup(var.cname_records[count.index], "name")
-  value   = lookup(var.cname_records[count.index], "address")
-  proxied = lookup(var.cname_records[count.index], "proxied")
+  name    = each.key
+  value   = each.value["address"]
+  proxied = each.value["proxied"]
 }
 
 resource "cloudflare_record" "NS" {
-  count = length(keys(transpose(var.ns_records)))
+  for_each = transpose(var.ns_records)
 
   zone_id = var.cloudflare_zone_id
 
   type  = "NS"
-  name  = element(flatten(values(transpose(var.ns_records))), count.index)
-  value = element(keys(transpose(var.ns_records)), count.index)
+  name  = each.value[0]
+  value = each.key
 }
 
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {

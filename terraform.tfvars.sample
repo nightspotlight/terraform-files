@@ -5,17 +5,17 @@ cloudflare_api_key = ""
 hcloud_token = ""
 
 a_records = [
-  { name = "@", address = "123.123.123.123", proxied = false }
+  "@" = { address = "123.123.123.123", proxied = true }
 ]
 
-aaaa_records = [
-  { name = "@", address = "", proxied = true },
-  { name = "www", address = "", proxied = true },
-  { name = "git", address = "", proxied = false }
-]
+aaaa_records = {
+  "@" = { address = "2345:abcd:ef01:2345::1", proxied = true },
+  www = { address = "2345:abcd:ef01:2345::2", proxied = true },
+  git = { address = "2345:abcd:ef01:2345::3", proxied = false }
+}
 
 cname_records = [
-  { name = "testcname", address = "cnametarget.tld", proxied = false }
+  testcname = { address = "cnametarget.tld", proxied = false }
 ]
 
 ns_records = {
