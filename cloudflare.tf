@@ -18,7 +18,7 @@ resource "cloudflare_zone" "nightspotlight_me" {
   zone = var.cloudflare_zone_name
 
   plan   = "free"
-  paused = false
+  paused = true
 }
 
 resource "cloudflare_record" "A" {
