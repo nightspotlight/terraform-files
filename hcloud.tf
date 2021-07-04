@@ -1,3 +1,7 @@
+locals {
+  any_network = ["0.0.0.0/0", "::/0"]
+}
+
 resource "hcloud_ssh_key" "roman" {
   name       = "Roman@Roman-PC"
   public_key = file("${path.root}/files/ssh/roman.key.pub")
@@ -48,40 +52,32 @@ resource "hcloud_volume" "nextcloud-data" {
 
 resource "hcloud_firewall" "nextcloud" {
   name = "nextcloud"
+
   rule {
-    direction = "in"
-    protocol  = "icmp"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+    direction  = "in"
+    protocol   = "icmp"
+    source_ips = local.any_network
   }
+
   rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "22"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "22"
+    source_ips = local.any_network
   }
+
   rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "80"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "80"
+    source_ips = local.any_network
   }
+
   rule {
-    direction = "in"
-    protocol  = "tcp"
-    port      = "443"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "443"
+    source_ips = local.any_network
   }
 
   labels = {
