@@ -1,3 +1,19 @@
+locals {
+  nextcloud_a_record = {
+    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
+      address = hcloud_server.nextcloud.ipv4_address,
+      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
+    }
+  }
+
+  nextcloud_aaaa_record = {
+    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
+      address = hcloud_server.nextcloud.ipv6_address,
+      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
+    }
+  }
+}
+
 resource "cloudflare_zone" "nightspotlight_me" {
   zone = var.cloudflare_zone_name
 
@@ -6,7 +22,7 @@ resource "cloudflare_zone" "nightspotlight_me" {
 }
 
 resource "cloudflare_record" "A" {
-  for_each = var.a_records
+  for_each = merge(var.a_records, local.nextcloud_a_record)
 
   zone_id = var.cloudflare_zone_id
 
@@ -17,7 +33,7 @@ resource "cloudflare_record" "A" {
 }
 
 resource "cloudflare_record" "AAAA" {
-  for_each = var.aaaa_records
+  for_each = merge(var.aaaa_records, local.nextcloud_aaaa_record)
 
   zone_id = var.cloudflare_zone_id
 

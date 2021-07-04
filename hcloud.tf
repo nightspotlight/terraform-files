@@ -18,9 +18,11 @@ resource "hcloud_server" "nextcloud" {
   firewall_ids = [hcloud_firewall.nextcloud.id]
 
   labels = {
-    app       = "nextcloud",
-    docker    = "true",
-    terraform = "true"
+    app           = "nextcloud",
+    docker        = "true",
+    terraform     = "true",
+    dns_subdomain = "share",
+    cf_proxied    = "false"
   }
 
   lifecycle {
