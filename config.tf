@@ -1,5 +1,6 @@
 terraform {
   required_version = ">= 0.13"
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -13,6 +14,14 @@ terraform {
     #   source  = "timohirt/hetznerdns"
     #   version = "1.1.1"
     # }
+  }
+
+  backend "remote" {
+    organization = "nightspotlight"
+
+    workspaces {
+      name = "terraform-files"
+    }
   }
 }
 
