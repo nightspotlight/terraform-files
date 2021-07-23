@@ -1,11 +1,11 @@
 output "nextcloud_server" {
   description = "Nextcloud server status"
-  value = [
-    "Name: ${hcloud_server.nextcloud.name}",
-    "Type: ${hcloud_server.nextcloud.server_type}",
-    "Datacenter: ${hcloud_server.nextcloud.datacenter}",
-    "Status: ${hcloud_server.nextcloud.status}"
-  ]
+  value = {
+    "Name"       = hcloud_server.nextcloud.name,
+    "Type"       = hcloud_server.nextcloud.server_type,
+    "Datacenter" = hcloud_server.nextcloud.datacenter,
+    "Status"     = hcloud_server.nextcloud.status
+  }
 }
 
 output "nextcloud_server_ips" {
@@ -18,10 +18,10 @@ output "nextcloud_server_ips" {
 
 output "cloudflare_zone_status" {
   description = "Cloudflare zone status"
-  value = [
-    "Zone: ${cloudflare_zone.nightspotlight_me.zone}",
-    "Status: ${cloudflare_zone.nightspotlight_me.status}",
-    "Paused: ${cloudflare_zone.nightspotlight_me.paused}",
-    "Phishing detected: ${cloudflare_zone.nightspotlight_me.meta.phishing_detected}"
-  ]
+  value = {
+    "Zone"              = cloudflare_zone.nightspotlight_me.zone,
+    "Status"            = cloudflare_zone.nightspotlight_me.status,
+    "Paused"            = cloudflare_zone.nightspotlight_me.paused,
+    "Phishing detected" = cloudflare_zone.nightspotlight_me.meta.phishing_detected
+  }
 }
