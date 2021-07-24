@@ -9,14 +9,6 @@ variable "cloudflare_api_key" {
   sensitive = true
 }
 
-variable "cloudflare_zone_name" {
-  default = "nightspotlight.me"
-}
-
-variable "cloudflare_zone_id" {
-  default = "682b27e4ca7465c29bc00a9d1b0876c3"
-}
-
 
 # Hetzner Cloud
 variable "hcloud_token" {

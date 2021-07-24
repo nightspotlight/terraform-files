@@ -15,8 +15,7 @@ locals {
 }
 
 resource "cloudflare_zone" "nightspotlight_me" {
-  zone = var.cloudflare_zone_name
-
+  zone   = "nightspotlight.me"
   plan   = "free"
   paused = true
 }
@@ -24,7 +23,7 @@ resource "cloudflare_zone" "nightspotlight_me" {
 resource "cloudflare_record" "A" {
   for_each = merge(var.a_records, local.nextcloud_a_record)
 
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nightspotlight_me.id
 
   type    = "A"
   name    = each.key
@@ -35,7 +34,7 @@ resource "cloudflare_record" "A" {
 resource "cloudflare_record" "AAAA" {
   for_each = merge(var.aaaa_records, local.nextcloud_aaaa_record)
 
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nightspotlight_me.id
 
   type    = "AAAA"
   name    = each.key
@@ -46,7 +45,7 @@ resource "cloudflare_record" "AAAA" {
 resource "cloudflare_record" "CNAME" {
   for_each = var.cname_records
 
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nightspotlight_me.id
 
   type    = "CNAME"
   name    = each.key
@@ -57,7 +56,7 @@ resource "cloudflare_record" "CNAME" {
 resource "cloudflare_record" "NS" {
   for_each = transpose(var.ns_records)
 
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nightspotlight_me.id
 
   type  = "NS"
   name  = each.value[0]
@@ -65,7 +64,7 @@ resource "cloudflare_record" "NS" {
 }
 
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nightspotlight_me.id
 
   settings {
     # SSL/TLS
@@ -76,7 +75,7 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     opportunistic_encryption = "on"
     opportunistic_onion      = "off"
     min_tls_version          = "1.1"
-    tls_1_3                  = "zrt"
+    tls_1_3                  = "on"
     tls_client_auth          = "off"
 
     # Firewall
@@ -108,6 +107,9 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     pseudo_ipv4    = "off"
     ip_geolocation = "off"
     websockets     = "on"
+    http2          = "on"
+    http3          = "on"
+    zero_rtt       = "on"
 
     # Scrape Shield
     email_obfuscation   = "on"
