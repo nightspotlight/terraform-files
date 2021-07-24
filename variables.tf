@@ -40,3 +40,12 @@ variable "ns_records" {
   type    = map(list(string))
   default = {}
 }
+
+
+# Common variables
+variable "common_tags" {
+  type = map(string)
+  default = {
+    "terraform" = "true"
+  }
+}

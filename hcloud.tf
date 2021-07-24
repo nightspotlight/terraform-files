@@ -1,14 +1,18 @@
 locals {
   any_network = ["0.0.0.0/0", "::/0"]
+  tags = merge(
+    {
+      "app" = "nextcloud"
+    },
+    var.common_tags
+  )
 }
 
 resource "hcloud_ssh_key" "roman" {
   name       = "Roman@Roman-PC"
   public_key = file("${path.root}/files/ssh/roman.key.pub")
 
-  labels = {
-    terraform = "true"
-  }
+  labels = var.common_tags
 }
 
 resource "hcloud_server" "nextcloud" {
@@ -21,13 +25,14 @@ resource "hcloud_server" "nextcloud" {
   user_data    = data.cloudinit_config.user-data.rendered
   firewall_ids = [hcloud_firewall.nextcloud.id]
 
-  labels = {
-    app           = "nextcloud",
-    docker        = "true",
-    terraform     = "true",
-    dns_subdomain = "share",
-    cf_proxied    = "false"
-  }
+  labels = merge(
+    {
+      "docker"        = "true",
+      "dns_subdomain" = "share",
+      "cf_proxied"    = "false"
+    },
+    local.tags
+  )
 
   lifecycle {
     ignore_changes = [
@@ -44,10 +49,7 @@ resource "hcloud_volume" "nextcloud-data" {
   automount = true
   format    = "xfs"
 
-  labels = {
-    app       = "nextcloud",
-    terraform = "true"
-  }
+  labels = local.tags
 }
 
 resource "hcloud_firewall" "nextcloud" {
@@ -80,8 +82,5 @@ resource "hcloud_firewall" "nextcloud" {
     source_ips = local.any_network
   }
 
-  labels = {
-    app       = "nextcloud",
-    terraform = "true"
-  }
+  labels = local.tags
 }
