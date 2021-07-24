@@ -10,10 +10,6 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = "~> 1.27"
     }
-    # hetznerdns = {
-    #   source  = "timohirt/hetznerdns"
-    #   version = "1.1.1"
-    # }
     cloudinit = {
       source  = "hashicorp/cloudinit"
       version = "~> 2.2"
@@ -38,7 +34,3 @@ provider "cloudflare" {
 provider "hcloud" {
   token = var.hcloud_token
 }
-
-# provider "hetznerdns" {
-#   apitoken = var.hetznerdns_token
-# }
