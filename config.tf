@@ -14,6 +14,10 @@ terraform {
     #   source  = "timohirt/hetznerdns"
     #   version = "1.1.1"
     # }
+    cloudinit = {
+      source  = "hashicorp/cloudinit"
+      version = "~> 2.2"
+    }
   }
 
   backend "remote" {

@@ -18,7 +18,7 @@ resource "hcloud_server" "nextcloud" {
   image        = "debian-10"
   keep_disk    = true
   ssh_keys     = [hcloud_ssh_key.roman.id]
-  user_data    = file("${path.root}/files/cloud-init/user-data.yml")
+  user_data    = data.cloudinit_config.user-data.rendered
   firewall_ids = [hcloud_firewall.nextcloud.id]
 
   labels = {
