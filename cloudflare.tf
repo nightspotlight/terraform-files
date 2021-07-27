@@ -75,7 +75,7 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     opportunistic_encryption = "on"
     opportunistic_onion      = "off"
     min_tls_version          = "1.1"
-    tls_1_3                  = "on"
+    tls_1_3                  = "zrt"
     tls_client_auth          = "off"
 
     # Firewall
