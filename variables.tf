@@ -1,11 +1,5 @@
 # Cloudflare
-variable "cloudflare_email" {}
-
-variable "cloudflare_account_id" {
-  sensitive = true
-}
-
-variable "cloudflare_api_key" {
+variable "cloudflare_api_token" {
   sensitive = true
 }
 
