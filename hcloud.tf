@@ -47,7 +47,7 @@ resource "hcloud_server" "nextcloud" {
 
 resource "hcloud_volume" "nextcloud-data" {
   name      = "nextcloud-data"
-  size      = 115 # GB
+  size      = 120 # GB
   server_id = hcloud_server.nextcloud.id
   automount = true
   format    = "xfs"
