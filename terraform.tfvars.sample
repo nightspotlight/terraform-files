@@ -1,6 +1,4 @@
-cloudflare_email = ""
-cloudflare_account_id = ""
-cloudflare_api_key = ""
+cloudflare_api_token = ""
 
 hcloud_token = ""
 
