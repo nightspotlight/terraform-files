@@ -96,6 +96,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+*.lock.hcl
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
