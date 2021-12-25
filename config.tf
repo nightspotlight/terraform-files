@@ -4,11 +4,11 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 2.24"
+      version = "~> 3.6"
     }
     hcloud = {
       source  = "hetznercloud/hcloud"
-      version = "~> 1.27"
+      version = "~> 1.32"
     }
     cloudinit = {
       source  = "hashicorp/cloudinit"
