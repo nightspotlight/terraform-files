@@ -17,7 +17,7 @@ resource "hcloud_ssh_key" "roman" {
 
 resource "hcloud_server" "nextcloud" {
   name         = "nextcloud"
-  server_type  = "cx21-ceph"
+  server_type  = "cx21"
   location     = "nbg1"
   image        = "debian-10"
   ssh_keys     = [hcloud_ssh_key.roman.id]
