@@ -22,6 +22,10 @@ resource "cloudflare_zone" "nightspotlight_me" {
   zone   = "nightspotlight.me"
   plan   = "free"
   paused = true
+
+  lifecycle {
+    ignore_changes = [account_id]
+  }
 }
 
 resource "cloudflare_record" "A" {
