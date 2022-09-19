@@ -1,3 +1,7 @@
+provider "hcloud" {
+  token = var.hcloud_token
+}
+
 locals {
   any_network = ["0.0.0.0/0", "::/0"]
   tags = merge(
