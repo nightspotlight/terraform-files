@@ -5,14 +5,13 @@ provider "cloudflare" {
 locals {
   nextcloud_a_record = {
     lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = hcloud_server.nextcloud.ipv4_address,
+      address = hcloud_primary_ip.nextcloud_ipv4.ip_address,
       proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
     }
   }
-
   nextcloud_aaaa_record = {
     lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = hcloud_server.nextcloud.ipv6_address,
+      address = cidrhost("${hcloud_primary_ip.nextcloud_ipv6.ip_address}/64", 1),
       proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
     }
   }

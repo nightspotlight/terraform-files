@@ -26,6 +26,30 @@ resource "hcloud_ssh_key" "nextcloud" {
   labels = local.tags
 }
 
+resource "hcloud_primary_ip" "nextcloud_ipv4" {
+  name = "${local.tags.app}-ipv4"
+
+  type              = "ipv4"
+  assignee_type     = "server"
+  assignee_id       = hcloud_server.nextcloud.id
+  auto_delete       = false
+  delete_protection = true
+
+  labels = local.tags
+}
+
+resource "hcloud_primary_ip" "nextcloud_ipv6" {
+  name = "${local.tags.app}-ipv6"
+
+  type              = "ipv6"
+  assignee_type     = "server"
+  assignee_id       = hcloud_server.nextcloud.id
+  auto_delete       = false
+  delete_protection = true
+
+  labels = local.tags
+}
+
 resource "hcloud_server" "nextcloud" {
   name = local.tags.app
 
@@ -39,6 +63,11 @@ resource "hcloud_server" "nextcloud" {
   keep_disk          = true
   delete_protection  = true
   rebuild_protection = true
+
+  public_net {
+    ipv4_enabled = true
+    ipv6_enabled = true
+  }
 
   labels = merge(local.tags,
     {
