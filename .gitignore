@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,git,terraform
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,git,terraform
+# Created by https://www.toptal.com/developers/gitignore/api/git,linux,macos,windows,terraform,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,linux,macos,windows,terraform,visualstudiocode
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -60,6 +60,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
 ### Terraform ###
 # Local .terraform directories
 **/.terraform/*
@@ -70,13 +74,14 @@ Temporary Items
 
 # Crash log files
 crash.log
+crash.*.log
 
-# Exclude all .tfvars files, which are likely to contain sentitive data, such as
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
 # password, private keys, and other secrets. These should not be part of version
 # control as they are data points which are potentially sensitive and subject
 # to change depending on the environment.
-#
 *.tfvars
+*.tfvars.json
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -97,6 +102,25 @@ override.tf.json
 terraform.rc
 
 *.lock.hcl
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -124,4 +148,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,git,terraform
+# End of https://www.toptal.com/developers/gitignore/api/git,linux,macos,windows,terraform,visualstudiocode
