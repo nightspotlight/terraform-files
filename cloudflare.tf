@@ -29,7 +29,7 @@ resource "cloudflare_zone" "nightspotlight_me" {
 }
 
 resource "cloudflare_record" "A" {
-  for_each = merge(var.a_records, local.nextcloud_a_record)
+  for_each = merge(local.nextcloud_a_record, var.a_records)
 
   zone_id = cloudflare_zone.nightspotlight_me.id
 
@@ -40,7 +40,7 @@ resource "cloudflare_record" "A" {
 }
 
 resource "cloudflare_record" "AAAA" {
-  for_each = merge(var.aaaa_records, local.nextcloud_aaaa_record)
+  for_each = merge(local.nextcloud_aaaa_record, var.aaaa_records)
 
   zone_id = cloudflare_zone.nightspotlight_me.id
 

@@ -40,13 +40,12 @@ resource "hcloud_server" "nextcloud" {
   delete_protection  = true
   rebuild_protection = true
 
-  labels = merge(
+  labels = merge(local.tags,
     {
       "docker"        = "true",
       "dns_subdomain" = "share",
       "cf_proxied"    = "false"
-    },
-    local.tags
+    }
   )
 
   lifecycle {
