@@ -6,9 +6,10 @@ locals {
   any_network = ["0.0.0.0/0", "::/0"]
   tags = merge(
     {
-      "app" = "nextcloud"
+      "terraform" = "true"
+      "app"       = "nextcloud"
     },
-    var.common_tags
+    var.additional_tags
   )
 }
 
@@ -16,7 +17,7 @@ resource "hcloud_ssh_key" "roman" {
   name       = "Roman@Roman-PC"
   public_key = file("${path.root}/files/ssh/roman.key.pub")
 
-  labels = var.common_tags
+  labels = local.tags
 }
 
 resource "hcloud_server" "nextcloud" {

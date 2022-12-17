@@ -32,10 +32,8 @@ variable "ns_records" {
 }
 
 
-# Common variables
-variable "common_tags" {
-  type = map(string)
-  default = {
-    "terraform" = "true"
-  }
+# Common resource tags
+variable "additional_tags" {
+  type    = map(string)
+  default = {}
 }
