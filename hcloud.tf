@@ -27,7 +27,8 @@ resource "hcloud_ssh_key" "nextcloud" {
 }
 
 resource "hcloud_server" "nextcloud" {
-  name         = "nextcloud"
+  name = local.tags.app
+
   server_type  = "cx21"
   location     = "nbg1"
   image        = "debian-10"
@@ -57,11 +58,12 @@ resource "hcloud_server" "nextcloud" {
 }
 
 resource "hcloud_volume" "nextcloud-data" {
-  name      = "nextcloud-data"
-  size      = 150 # GB
+  name = "${local.tags.app}-data"
+
   server_id = hcloud_server.nextcloud.id
-  automount = true
+  size      = 150 # GB
   format    = "xfs"
+  automount = true
 
   delete_protection = true
 
@@ -69,7 +71,7 @@ resource "hcloud_volume" "nextcloud-data" {
 }
 
 resource "hcloud_firewall" "nextcloud" {
-  name = "nextcloud"
+  name = local.tags.app
 
   rule {
     direction  = "in"
