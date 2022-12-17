@@ -13,8 +13,14 @@ locals {
   )
 }
 
-resource "hcloud_ssh_key" "roman" {
-  name       = "Roman@Roman-PC"
+moved {
+  from = hcloud_ssh_key.roman
+  to   = hcloud_ssh_key.nextcloud
+}
+
+resource "hcloud_ssh_key" "nextcloud" {
+  name = local.tags.app
+
   public_key = file("${path.root}/files/ssh/roman.key.pub")
 
   labels = local.tags
@@ -25,7 +31,7 @@ resource "hcloud_server" "nextcloud" {
   server_type  = "cx21"
   location     = "nbg1"
   image        = "debian-10"
-  ssh_keys     = [hcloud_ssh_key.roman.id]
+  ssh_keys     = [hcloud_ssh_key.nextcloud.id]
   user_data    = data.cloudinit_config.user-data.rendered
   firewall_ids = [hcloud_firewall.nextcloud.id]
 
