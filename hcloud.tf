@@ -53,7 +53,7 @@ resource "hcloud_primary_ip" "nextcloud_ipv6" {
 resource "hcloud_server" "nextcloud" {
   name = local.tags.app
 
-  server_type  = "cx21"
+  server_type  = "cpx11"
   location     = "nbg1"
   image        = "debian-10"
   ssh_keys     = [hcloud_ssh_key.nextcloud.id]
