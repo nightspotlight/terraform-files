@@ -1,7 +1,3 @@
-provider "hcloud" {
-  token = var.hcloud_token
-}
-
 locals {
   nextcloud_a_record = {
     lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {

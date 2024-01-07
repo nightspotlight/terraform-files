@@ -1,7 +1,3 @@
-provider "cloudflare" {
-  api_token = var.cloudflare_api_token
-}
-
 resource "cloudflare_zone" "nightspotlight_me" {
   account_id = "04132b11b075606d0abf885c6257d12f"
   zone       = "nightspotlight.me"
