@@ -1,9 +1,9 @@
-#terraform {
-#  backend "remote" {
-#    organization = "nightspotlight"
-#
-#    workspaces {
-#      name = "terraform-files"
-#    }
-#  }
-#}
+terraform {
+  cloud {
+    organization = "nightspotlight"
+
+    workspaces {
+      name = "terraform-files"
+    }
+  }
+}
