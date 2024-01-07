@@ -2,9 +2,9 @@ cloudflare_api_token = ""
 
 hcloud_token = ""
 
-a_records = [
+a_records = {
   "@" = { address = "123.123.123.123", proxied = true }
-]
+}
 
 aaaa_records = {
   "@" = { address = "2345:abcd:ef01:2345::1", proxied = true },
@@ -12,9 +12,9 @@ aaaa_records = {
   git = { address = "2345:abcd:ef01:2345::3", proxied = false }
 }
 
-cname_records = [
+cname_records = {
   testcname = { address = "cnametarget.tld", proxied = false }
-]
+}
 
 ns_records = {
   "test" = [
