@@ -2,79 +2,11 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
-locals {
-  nextcloud_a_record = {
-    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = hcloud_primary_ip.nextcloud_ipv4.ip_address,
-      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
-    }
-  }
-  nextcloud_aaaa_record = {
-    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = cidrhost("${hcloud_primary_ip.nextcloud_ipv6.ip_address}/64", 1),
-      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
-    }
-  }
-}
-
 resource "cloudflare_zone" "nightspotlight_me" {
   account_id = "04132b11b075606d0abf885c6257d12f"
   zone       = "nightspotlight.me"
   plan       = "free"
   paused     = true
-}
-
-resource "cloudflare_record" "A" {
-  for_each = merge(local.nextcloud_a_record, var.a_records)
-
-  zone_id = cloudflare_zone.nightspotlight_me.id
-
-  type    = "A"
-  name    = each.key
-  value   = each.value["address"]
-  proxied = each.value["proxied"]
-}
-
-resource "cloudflare_record" "AAAA" {
-  for_each = merge(local.nextcloud_aaaa_record, var.aaaa_records)
-
-  zone_id = cloudflare_zone.nightspotlight_me.id
-
-  type    = "AAAA"
-  name    = each.key
-  value   = each.value["address"]
-  proxied = each.value["proxied"]
-}
-
-resource "cloudflare_record" "CNAME" {
-  for_each = var.cname_records
-
-  zone_id = cloudflare_zone.nightspotlight_me.id
-
-  type    = "CNAME"
-  name    = each.key
-  value   = each.value["address"]
-  proxied = each.value["proxied"]
-}
-
-resource "cloudflare_record" "NS" {
-  for_each = transpose(var.ns_records)
-
-  zone_id = cloudflare_zone.nightspotlight_me.id
-
-  type  = "NS"
-  name  = each.value[0]
-  value = each.key
-}
-
-resource "cloudflare_record" "TXT" {
-  for_each = var.txt_records
-
-  zone_id = cloudflare_zone.nightspotlight_me.id
-
-  type  = "TXT"
-  name  = each.key
-  value = each.value
 }
 
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
@@ -130,4 +62,25 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     server_side_exclude = "off"
     hotlink_protection  = "on"
   }
+}
+
+moved {
+  from = cloudflare_record.A
+  to   = module.dns.cloudflare_record.A
+}
+moved {
+  from = cloudflare_record.AAAA
+  to   = module.dns.cloudflare_record.AAAA
+}
+moved {
+  from = cloudflare_record.CNAME
+  to   = module.dns.cloudflare_record.CNAME
+}
+moved {
+  from = cloudflare_record.NS
+  to   = module.dns.cloudflare_record.NS
+}
+moved {
+  from = cloudflare_record.TXT
+  to   = module.dns.cloudflare_record.TXT
 }
