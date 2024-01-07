@@ -1,35 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/git,linux,macos,windows,terraform,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,linux,macos,windows,terraform,visualstudiocode
-
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
-
-### Linux ###
-*~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
+# Created by https://www.toptal.com/developers/gitignore/api/macos,terraform,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,terraform,visualstudiocode
 
 ### macOS ###
 # General
@@ -95,13 +65,10 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
-*tfplan*
 
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-
-*.lock.hcl
 
 ### VisualStudioCode ###
 .vscode/*
@@ -122,30 +89,4 @@ terraform.rc
 .history
 .ionide
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-
-# Dump file
-*.stackdump
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/git,linux,macos,windows,terraform,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/macos,terraform,visualstudiocode
