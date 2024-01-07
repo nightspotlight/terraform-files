@@ -18,13 +18,10 @@ locals {
 }
 
 resource "cloudflare_zone" "nightspotlight_me" {
-  zone   = "nightspotlight.me"
-  plan   = "free"
-  paused = true
-
-  lifecycle {
-    ignore_changes = [account_id]
-  }
+  account_id = "04132b11b075606d0abf885c6257d12f"
+  zone       = "nightspotlight.me"
+  plan       = "free"
+  paused     = true
 }
 
 resource "cloudflare_record" "A" {
