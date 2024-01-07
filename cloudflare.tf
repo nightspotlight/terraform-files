@@ -70,6 +70,16 @@ resource "cloudflare_record" "NS" {
   value = each.key
 }
 
+resource "cloudflare_record" "TXT" {
+  for_each = var.txt_records
+
+  zone_id = cloudflare_zone.nightspotlight_me.id
+
+  type  = "TXT"
+  name  = each.key
+  value = each.value
+}
+
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
   zone_id = cloudflare_zone.nightspotlight_me.id
 

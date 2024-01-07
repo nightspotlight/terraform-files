@@ -31,6 +31,11 @@ variable "ns_records" {
   default = {}
 }
 
+variable "txt_records" {
+  type    = map(string)
+  default = {}
+}
+
 
 # Common resource tags
 variable "additional_tags" {

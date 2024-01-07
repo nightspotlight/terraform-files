@@ -23,3 +23,8 @@ ns_records = {
     "ns3.example.net"
   ]
 }
+
+txt_records = {
+  testtxt1 = "txtvalue1",
+  testtxt2 = "txtvalue2"
+}
