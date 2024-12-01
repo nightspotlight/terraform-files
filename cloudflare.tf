@@ -28,11 +28,6 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     # Speed
     brotli        = "on"
     rocket_loader = "off"
-    mobile_redirect {
-      status           = "off"
-      mobile_subdomain = ""
-      strip_uri        = false
-    }
 
     # Caching
     cache_level      = "aggressive"
