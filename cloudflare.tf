@@ -26,11 +26,6 @@ resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
     privacy_pass   = "on"
 
     # Speed
-    minify {
-      css  = "off"
-      html = "off"
-      js   = "off"
-    }
     brotli        = "on"
     rocket_loader = "off"
     mobile_redirect {
