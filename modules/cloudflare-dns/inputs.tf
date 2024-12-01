@@ -17,6 +17,11 @@ variable "cname_records" {
   default = {}
 }
 
+variable "mx_records" {
+  type    = map(object({ address = string, priority = number }))
+  default = {}
+}
+
 variable "ns_records" {
   type    = map(list(string))
   default = {}

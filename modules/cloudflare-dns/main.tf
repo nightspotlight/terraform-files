@@ -31,6 +31,17 @@ resource "cloudflare_record" "CNAME" {
   proxied = each.value["proxied"]
 }
 
+resource "cloudflare_record" "MX" {
+  for_each = var.mx_records
+
+  zone_id = var.zone_id
+
+  type     = "MX"
+  name     = each.key
+  value    = each.value["address"]
+  priority = each.value["priority"]
+}
+
 resource "cloudflare_record" "NS" {
   for_each = transpose(var.ns_records)
 
