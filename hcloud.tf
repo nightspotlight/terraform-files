@@ -1,16 +1,16 @@
 locals {
-  nextcloud_a_record = {
-    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = hcloud_primary_ip.nextcloud_ipv4.ip_address,
-      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
-    }
-  }
-  nextcloud_aaaa_record = {
-    lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
-      address = cidrhost("${hcloud_primary_ip.nextcloud_ipv6.ip_address}/64", 1),
-      proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
-    }
-  }
+  #nextcloud_a_record = {
+  #  lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
+  #    address = hcloud_primary_ip.nextcloud_ipv4.ip_address,
+  #    proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
+  #  }
+  #}
+  #nextcloud_aaaa_record = {
+  #  lookup(hcloud_server.nextcloud.labels, "dns_subdomain", "nextcloud") = {
+  #    address = cidrhost("${hcloud_primary_ip.nextcloud_ipv6.ip_address}/64", 1),
+  #    proxied = lookup(hcloud_server.nextcloud.labels, "cf_proxied", "false")
+  #  }
+  #}
   any_network = ["0.0.0.0/0", "::/0"]
   tags = merge(
     {
