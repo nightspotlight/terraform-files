@@ -2,7 +2,7 @@ resource "cloudflare_zone" "nightspotlight_me" {
   account_id = "04132b11b075606d0abf885c6257d12f"
   zone       = "nightspotlight.me"
   plan       = "free"
-  paused     = true
+  paused     = false
 }
 
 resource "cloudflare_zone_settings_override" "nightspotlight_me_settings" {
