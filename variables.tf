@@ -1,3 +1,13 @@
+variable "a_records" {
+  type    = map(object({ address = string, proxied = bool }))
+  default = {}
+}
+
+variable "aaaa_records" {
+  type    = map(object({ address = string, proxied = bool }))
+  default = {}
+}
+
 variable "cname_records" {
   type    = map(object({ address = string, proxied = bool }))
   default = {}
